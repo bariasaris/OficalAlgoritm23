@@ -5,7 +5,7 @@
   --black2:#0b1020;
   --card:#0e152b;
   --text:#eaf2ff;
-  --muted:#a9b7d0;
+  --muted:#6b7a8f;
   --border:rgba(255,255,255,0.10);
   --shadow: 0px 18px 45px rgba(0,0,0,0.45);
   --radius: 18px;
@@ -61,7 +61,7 @@ header{
 }
 
 .brand-logo img {
-  width: 90px;
+  width: 50px;
   height: auto;
   display: block;
 }
@@ -395,7 +395,7 @@ img{
   }
 
   .brand-logo img{
-    width:72px;
+    width:40px;
   }
 
   .brand-title h1{
