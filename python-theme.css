@@ -97,11 +97,6 @@ header{
   gap:16px;
 }
 
-.hero-content{
-  flex: 1;
-  text-align: center;
-}
-
 .hero h2{
   margin:0px 0px 8px;
   font-size:22px;
@@ -124,7 +119,6 @@ header{
   justify-content:center;
   background: linear-gradient(135deg, rgba(47,125,209,0.18), rgba(11,74,139,0.14));
   border:1px solid var(--border);
-  flex-shrink: 0;
 }
 
 .hero-badge i{
@@ -144,53 +138,6 @@ header{
 .section h2{
   margin:0px 0px 14px;
   font-size:18px;
-}
-
-.section-label{
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-.nav-buttons{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  justify-content: center;
-}
-
-.nav-btn{
-  padding:14px 24px;
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background: linear-gradient(180deg, rgba(14,21,43,0.95), rgba(11,16,32,0.88));
-  box-shadow: 0px 12px 26px rgba(0,0,0,0.40);
-  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:700;
-  font-size:15px;
-  color:var(--text);
-}
-
-.nav-btn:hover{
-  transform: translateY(-2px);
-  box-shadow: 0px 18px 34px rgba(0,0,0,0.52);
-  border-color: rgba(47,125,209,0.45);
-}
-
-.nav-btn:active{
-  transform: translateY(1px) scale(0.99);
-}
-
-.btn-emoji i{
-  font-size:18px;
-  color: var(--blue);
-}
-
-.btn-text{
-  color:var(--text);
 }
 
 .cards{
@@ -350,17 +297,11 @@ footer{
 
 @media (max-width: 760px){
   .container{ max-width:360px; padding:16px 12px 28px; }
-  .hero{ flex-direction: column; text-align: center; }
-  .hero-content{ text-align: center; }
   .hero-badge{ display:none; }
   .cards{ gap:12px; }
   .card{ width:360px; }
   .footer-row{ flex-direction:column; }
-  .nav-buttons{ flex-direction: column; align-items: stretch; }
-  .nav-btn{ justify-content: center; }
-}
-
-.templates-grid{
+}.templates-grid{
   display:grid;
   grid-template-columns: repeat(6, 1fr);
   gap:12px;
