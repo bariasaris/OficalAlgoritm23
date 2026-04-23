@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PythonAlgorithm — Калькулятор жетонов</title>
-  <link rel="stylesheet" href="./styles/python-theme.css">
+  <link rel="stylesheet" href="./python-theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     .calc-wrap{
@@ -12,8 +12,8 @@
       padding:18px;
       border-radius:18px;
       border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.04);
-      box-shadow: 0px 18px 45px rgba(0,0,0,0.45);
+      background: rgba(14,21,43,0.70);
+      box-shadow: var(--shadow);
       max-width:1100px;
       margin-left:auto;
       margin-right:auto;
@@ -23,15 +23,15 @@
       width:100%;
       max-width:480px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), #f7fbff);
-      box-shadow: 0px 10px 22px rgba(16,42,67,0.10);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(14,21,43,0.95), rgba(11,16,32,0.88));
+      box-shadow: 0px 12px 26px rgba(0,0,0,0.40);
       padding:18px;
     }
 
     .calculator-screen{
       background:#070a12;
-      color:rgba(255,255,255,0.06);
+      color:#eaf2ff;
       padding:16px;
       border-radius:16px;
       min-height:92px;
@@ -39,13 +39,13 @@
       flex-direction:column;
       justify-content:center;
       text-align:right;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      border:1px solid rgba(255,255,255,0.12);
+      font-family: var(--mono);
+      border:1px solid var(--border);
     }
 
     .calculation{
       font-size:14px;
-      color:rgba(255,255,255,0.75);
+      color:var(--muted);
       min-height:20px;
       word-break:break-word;
     }
@@ -72,24 +72,24 @@
       font-weight:800;
       cursor:pointer;
       transition: transform 0.12s ease, box-shadow 0.12s ease;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.10);
-      box-shadow: 0px 6px 0px rgba(16,42,67,0.08);
-      color:#070a12;
+      background: rgba(255,255,255,0.06);
+      border:1px solid var(--border);
+      box-shadow: 0px 6px 0px rgba(0,0,0,0.30);
+      color:var(--text);
     }
 
     .calc-btn:hover{ transform: translateY(-1px); }
-    .calc-btn:active{ transform: translateY(2px); box-shadow: 0px 3px 0px rgba(16,42,67,0.08); }
+    .calc-btn:active{ transform: translateY(2px); box-shadow: 0px 3px 0px rgba(0,0,0,0.30); }
 
     .calc-btn.operator{
-      background: rgba(48,105,152,0.12);
-      border:1px solid rgba(48,105,152,0.22);
-      color:#1f4e75;
+      background: rgba(47,125,209,0.14);
+      border:1px solid rgba(47,125,209,0.22);
+      color:var(--blue);
     }
 
     .calc-btn.equals{
-      background: #2f7dd1;
-      border:1px solid #0b4a8b;
+      background: var(--blue);
+      border:1px solid var(--blue2);
       color:#070a12;
     }
 
@@ -99,9 +99,9 @@
       margin-top:16px;
       padding:14px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.06);
-      box-shadow: 0px 10px 22px rgba(16,42,67,0.08);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0px 10px 22px rgba(0,0,0,0.35);
     }
 
     .token-top{
@@ -119,14 +119,14 @@
     }
 
     .token-title span{
-      color:#a9b7d0;
+      color:var(--muted);
       font-size:13px;
     }
 
     .token-value{
       font-size:28px;
       font-weight:900;
-      color:#2f7dd1;
+      color:var(--blue);
       line-height:32px;
     }
 
@@ -141,9 +141,9 @@
       height:44px;
       padding:0px 14px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.06);
-      box-shadow: 0px 8px 18px rgba(16,42,67,0.08);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0px 8px 18px rgba(0,0,0,0.35);
       cursor:pointer;
       font-weight:800;
       display:inline-flex;
@@ -152,7 +152,7 @@
       transition: transform 0.12s ease, border-color 0.12s ease;
     }
 
-    .token-btn:hover{ transform: translateY(-1px); border-color: rgba(48,105,152,0.35); }
+    .token-btn:hover{ transform: translateY(-1px); border-color: rgba(47,125,209,0.45); }
     .token-btn:active{ transform: translateY(1px); }
 
     .token-btn.add{
@@ -166,8 +166,8 @@
     }
 
     .token-btn.reset{
-      background: rgba(48,105,152,0.10);
-      border-color: rgba(48,105,152,0.20);
+      background: rgba(47,125,209,0.10);
+      border-color: rgba(47,125,209,0.20);
     }
 
     
@@ -185,77 +185,20 @@
   }
 }
 
-
-@media (max-width: 1020px){
-  
-.layout{
-  display:grid;
-  grid-template-columns: 480px 480px;
-  gap:24px;
-  justify-content:center;
-  align-items:start;
-}
-
-@media (max-width: 1020px){
-  .layout{
-    grid-template-columns: 1fr;
-  }
-}
-
-}
-
-
-@media (max-width: 520px){
-  
-.layout{
-  display:grid;
-  grid-template-columns: 480px 480px;
-  gap:24px;
-  justify-content:center;
-  align-items:start;
-}
-
-@media (max-width: 1020px){
-  .layout{
-    grid-template-columns: 1fr;
-  }
-}
-
-
-@media (max-width: 1020px){
-  
-.layout{
-  display:grid;
-  grid-template-columns: 480px 480px;
-  gap:24px;
-  justify-content:center;
-  align-items:start;
-}
-
-@media (max-width: 1020px){
-  .layout{
-    grid-template-columns: 1fr;
-  }
-}
-
-}
-
-}
-
     .token-log{
       width:100%;
       max-width:480px;
       padding:18px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.06);
-      box-shadow: 0px 10px 30px rgba(16,42,67,0.10);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.40);
     }
 
     .log-container{
       border-radius:16px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.06);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
       padding:12px;
       max-height:220px;
       overflow:auto;
@@ -267,16 +210,16 @@
       justify-content:space-between;
       gap:10px;
       padding:10px 0px;
-      border-bottom:1px solid #f0f4f8;
+      border-bottom:1px solid var(--border);
       font-size:13px;
-      color:#a9b7d0;
+      color:var(--muted);
     }
 
     .log-entry:last-child{ border-bottom:none; }
 
-    .log-time{ width:70px; color:#a9b7d0; }
+    .log-time{ width:70px; color:var(--muted); }
     .log-action{ flex:1; }
-    .log-tokens{ width:140px; text-align:right; font-weight:900; color:#2f7dd1; }
+    .log-tokens{ width:140px; text-align:right; font-weight:900; color:var(--blue); }
     .log-tokens.positive{ color:#16a34a; }
     .log-tokens.negative{ color:#dc2626; }
 
@@ -290,11 +233,12 @@
       height:40px;
       padding:0px 14px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.06);
-      box-shadow: 0px 8px 18px rgba(16,42,67,0.08);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0px 8px 18px rgba(0,0,0,0.35);
       cursor:pointer;
       font-weight:800;
+      color:var(--text);
     }
   
     @media (max-width: 1020px){
