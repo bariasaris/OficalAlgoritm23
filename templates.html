@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PythonAlgorithm — Шаблоны</title>
+  <link rel="stylesheet" href="./styles/python-theme.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body{ margin:0px; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#070a12; color:#eaf2ff; }
+    .container{ width:auto; max-width:1100px; margin:0px auto; padding:22px 16px 36px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="page-title">
+        <div>
+          <div class="breadcrumb">
+            <a href="index.html">Главная</a>
+            <span>›</span>
+            <span>Шаблоны</span>
+          </div>
+          <h1 style="margin:6px 0px 0px; font-size:24px;">Шаблоны кода</h1>
+          <p style="margin:8px 0px 0px; color:#a9b7d0; font-size:13px;">
+            const — это переменная, которую мы принимаем за число из условия.
+          </p>
+        </div>
+
+        <a class="back-home" href="index.html">
+          <i class="fas fa-arrow-left"></i>
+          На главную
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <h2>36 шаблонов</h2>
+
+        <div class="templates-grid" id="grid">
+          <div class="tpl-cell" data-code="const = 50
+
+n=int(input())
+
+if n &lt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">1.1 — Порог 50 (n &lt; 50)</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 10
+
+n=int(input())
+
+if n &lt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">1.2 — Отбор на соревнования (быстрее 10)</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 7
+
+n=int(input())
+
+if n != const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">1.3 — Любое кроме 7</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 999
+
+n=int(input())
+
+if n &gt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">1.4 — Счёт больше 999</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 0
+
+n=int(input())
+
+if n == const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">1.5 — Нулевая точка (n == 0)</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 60
+
+n=int(input())
+
+if n &lt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">1.6 — Скорость меньше 60</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n=int(input())
+for i in range(n):
+    print(&#x27;+&#x27;,end=&quot;&quot;)">
+            <div class="tpl-cell-title">2.1 — Забор из +</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n=int(input())
+for i in range(n):
+    print(&#x27;-&#x27;,end=&quot;&quot;)">
+            <div class="tpl-cell-title">2.2 — Линия из -</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n=int(input())
+for i in range(n):
+    print(&#x27;*&#x27;,end=&quot;&quot;)">
+            <div class="tpl-cell-title">2.3 — Рейтинг из *</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n=int(input())
+for i in range(n):
+    print(&#x27;%&#x27;,end=&quot;&quot;)">
+            <div class="tpl-cell-title">2.4 — Загрузка из %</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n=int(input())
+for i in range(n):
+    print(&#x27;&lt;&#x27;,end=&quot;&quot;)">
+            <div class="tpl-cell-title">2.5 — Стрелка влево &lt;</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n=int(input())
+for i in range(n):
+    print(&#x27;/&#x27;,end=&quot;&quot;)">
+            <div class="tpl-cell-title">2.6 — Склон горы /</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 18
+
+n = int(input())
+result = n + const
+if result &gt; const2:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">3.1 — Возраст +3 больше 18</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 100
+
+n = int(input())
+result = n - const
+if result &gt; const2:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">3.2 — Цена -3 больше 100</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 10
+
+n = int(input())
+result = n / const
+if result &gt; const2:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">3.3 — n/3 больше 10</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 5
+
+n = int(input())
+result = n // const
+if result &gt; const2:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">3.4 — n//3 больше 5</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 1
+
+n = int(input())
+result = n % const
+if result &gt; const2:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">3.5 — n%3 больше 1</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 20
+
+n = int(input())
+result = n + const
+if result &lt;= const2:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">3.6 — n+3 &lt;= 20</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 5
+
+n = int(input())
+result = n % const
+print(result)">
+            <div class="tpl-cell-title">4.1 — Остаток n % 5</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="n = int(input())
+result = n * n
+print(result)">
+            <div class="tpl-cell-title">4.2 — Квадрат числа</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 2
+
+n = int(input())
+result = n // const
+print(result)">
+            <div class="tpl-cell-title">4.3 — Целая половина (//2)</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 7
+
+n = int(input())
+result = n + const
+print(result)">
+            <div class="tpl-cell-title">4.4 — Прибавить 7</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 6
+
+n = int(input())
+result = n % const
+print(result)">
+            <div class="tpl-cell-title">4.5 — Остаток n % 6</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 100
+
+n = int(input())
+result = n - const
+print(result)">
+            <div class="tpl-cell-title">4.6 — Отнять 100</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 10
+const2 = 5
+const3 = 100
+
+n = int(input())
+if n &lt; 0:
+    result = n * const
+else:
+    result = n - const2
+if result != const3:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">5.1 — &lt;0 *10 иначе -5, проверить !=100</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 10
+const2 = 5
+const3 = 100
+
+n = int(input())
+if n != 0:
+    result = n + const
+else:
+    result = n * const2
+if result &lt;= const3:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">5.2 — !=0 +10 иначе *5, проверить &lt;=100</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 3
+const2 = 15
+const3 = 50
+
+n = int(input())
+if n &gt;= 0:
+    result = n * const
+else:
+    result = n + const2
+if result &gt; const3:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">5.3 — &gt;=0 *3 иначе +15, проверить &gt;50</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 20
+const2 = 2
+const3 = 0
+
+n = int(input())
+if n &lt;= 0:
+    result = n - const
+else:
+    result = n / const2
+if result &lt; const3:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">5.4 — &lt;=0 -20 иначе /2, проверить &lt;0</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 100
+const2 = 10
+const3 = 0
+
+n = int(input())
+if n == 0:
+    result = n + const
+else:
+    result = n * const2
+if result == const3:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">5.5 — ==0 +100 иначе *10, проверить ==0</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 2
+const2 = 30
+const3 = 70
+
+n = int(input())
+if n &lt;= 0:
+    result = n * const
+else:
+    result = n - const2
+if result != const3:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">5.6 — &lt;=0 *2 иначе -30, проверить !=70</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 50
+
+n = int(input())
+m = int(input())
+average = (n + m) / 2
+if average &gt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">6.1 — Среднее &gt; 50</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 50
+
+n = int(input())
+m = int(input())
+average = (n + m) / 2
+if average &lt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">6.2 — Среднее &lt; 50</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 100
+
+n = int(input())
+m = int(input())
+average = (n + m) / 2
+if average != const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">6.3 — Среднее != 100</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 25
+
+n = int(input())
+m = int(input())
+average = (n + m) / 2
+if average &lt; const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">6.4 — Среднее &lt; 25</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 100
+
+n = int(input())
+m = int(input())
+average = (n + m) / 2
+if average &lt;= const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">6.5 — Среднее &lt;= 100</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+          <div class="tpl-cell" data-code="const = 75
+
+n = int(input())
+m = int(input())
+average = (n + m) / 2
+if average != const:
+    print(&#x27;YES&#x27;)
+else:
+    print(&#x27;NO&#x27;)">
+            <div class="tpl-cell-title">6.6 — Среднее != 75</div>
+            <div class="tpl-cell-sub">Нажми, чтобы показать код</div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;">
+          <h2>Код</h2>
+
+          <pre id="codeBox" style="
+            margin:0px;
+            padding:16px;
+            border-radius:18px;
+            border:1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.06);
+            box-shadow: 0px 12px 26px rgba(0,0,0,0.40);
+            min-height:240px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size:13px;
+            line-height:20px;
+            white-space:pre-wrap;
+            word-break:break-word;
+            color:#eaf2ff;
+          ">Нажми на ячейку сверху — код появится здесь.</pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+        <a class="back-home" href="index.html">
+          <i class="fas fa-arrow-left"></i>
+          На главную
+        </a>
+      </div>
+
+      <p class="copyright">© 2026 PythonAlgorithm.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    const codeBox = document.getElementById("codeBox");
+    const cells = document.querySelectorAll(".tpl-cell");
+
+    cells.forEach((cell) => {
+      cell.addEventListener("click", () => {
+        const code = cell.getAttribute("data-code");
+        codeBox.textContent = code;
+      });
+    });
+  </script>
+</body>
+</html>

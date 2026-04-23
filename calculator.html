@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PythonAlgorithm — Калькулятор жетонов</title>
+  <link rel="stylesheet" href="./styles/python-theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .calc-wrap{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.04);
+      box-shadow: 0px 18px 45px rgba(0,0,0,0.45);
+      max-width:1100px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .calculator{
+      width:100%;
+      max-width:480px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), #f7fbff);
+      box-shadow: 0px 10px 22px rgba(16,42,67,0.10);
+      padding:18px;
+    }
+
+    .calculator-screen{
+      background:#070a12;
+      color:rgba(255,255,255,0.06);
+      padding:16px;
+      border-radius:16px;
+      min-height:92px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:right;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+
+    .calculation{
+      font-size:14px;
+      color:rgba(255,255,255,0.75);
+      min-height:20px;
+      word-break:break-word;
+    }
+
+    .result{
+      font-size:30px;
+      font-weight:800;
+      min-height:38px;
+      word-break:break-word;
+    }
+
+    .calculator-buttons{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .calc-btn{
+      height:52px;
+      border:none;
+      border-radius:14px;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow: 0px 6px 0px rgba(16,42,67,0.08);
+      color:#070a12;
+    }
+
+    .calc-btn:hover{ transform: translateY(-1px); }
+    .calc-btn:active{ transform: translateY(2px); box-shadow: 0px 3px 0px rgba(16,42,67,0.08); }
+
+    .calc-btn.operator{
+      background: rgba(48,105,152,0.12);
+      border:1px solid rgba(48,105,152,0.22);
+      color:#1f4e75;
+    }
+
+    .calc-btn.equals{
+      background: #2f7dd1;
+      border:1px solid #0b4a8b;
+      color:#070a12;
+    }
+
+    .calc-btn.zero{ grid-column: span 2; }
+
+    .token-panel{
+      margin-top:16px;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.06);
+      box-shadow: 0px 10px 22px rgba(16,42,67,0.08);
+    }
+
+    .token-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .token-title{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .token-title span{
+      color:#a9b7d0;
+      font-size:13px;
+    }
+
+    .token-value{
+      font-size:28px;
+      font-weight:900;
+      color:#2f7dd1;
+      line-height:32px;
+    }
+
+    .token-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .token-btn{
+      height:44px;
+      padding:0px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.06);
+      box-shadow: 0px 8px 18px rgba(16,42,67,0.08);
+      cursor:pointer;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform 0.12s ease, border-color 0.12s ease;
+    }
+
+    .token-btn:hover{ transform: translateY(-1px); border-color: rgba(48,105,152,0.35); }
+    .token-btn:active{ transform: translateY(1px); }
+
+    .token-btn.add{
+      background: rgba(34,197,94,0.12);
+      border-color: rgba(34,197,94,0.22);
+    }
+
+    .token-btn.sub{
+      background: rgba(239,68,68,0.10);
+      border-color: rgba(239,68,68,0.22);
+    }
+
+    .token-btn.reset{
+      background: rgba(48,105,152,0.10);
+      border-color: rgba(48,105,152,0.20);
+    }
+
+    
+.layout{
+  display:grid;
+  grid-template-columns: 480px 480px;
+  gap:24px;
+  justify-content:center;
+  align-items:start;
+}
+
+@media (max-width: 1020px){
+  .layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 1020px){
+  
+.layout{
+  display:grid;
+  grid-template-columns: 480px 480px;
+  gap:24px;
+  justify-content:center;
+  align-items:start;
+}
+
+@media (max-width: 1020px){
+  .layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+}
+
+
+@media (max-width: 520px){
+  
+.layout{
+  display:grid;
+  grid-template-columns: 480px 480px;
+  gap:24px;
+  justify-content:center;
+  align-items:start;
+}
+
+@media (max-width: 1020px){
+  .layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 1020px){
+  
+.layout{
+  display:grid;
+  grid-template-columns: 480px 480px;
+  gap:24px;
+  justify-content:center;
+  align-items:start;
+}
+
+@media (max-width: 1020px){
+  .layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+}
+
+}
+
+    .token-log{
+      width:100%;
+      max-width:480px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.06);
+      box-shadow: 0px 10px 30px rgba(16,42,67,0.10);
+    }
+
+    .log-container{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.06);
+      padding:12px;
+      max-height:220px;
+      overflow:auto;
+    }
+
+    .log-entry{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 0px;
+      border-bottom:1px solid #f0f4f8;
+      font-size:13px;
+      color:#a9b7d0;
+    }
+
+    .log-entry:last-child{ border-bottom:none; }
+
+    .log-time{ width:70px; color:#a9b7d0; }
+    .log-action{ flex:1; }
+    .log-tokens{ width:140px; text-align:right; font-weight:900; color:#2f7dd1; }
+    .log-tokens.positive{ color:#16a34a; }
+    .log-tokens.negative{ color:#dc2626; }
+
+    .log-actions{
+      margin-top:12px;
+      display:flex;
+      justify-content:flex-end;
+    }
+
+    .log-actions button{
+      height:40px;
+      padding:0px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.06);
+      box-shadow: 0px 8px 18px rgba(16,42,67,0.08);
+      cursor:pointer;
+      font-weight:800;
+    }
+  
+    @media (max-width: 1020px){
+      .calc-wrap{
+        padding:14px;
+      }
+      .layout{
+        grid-template-columns: 1fr !important;
+        gap:16px;
+      }
+      .calculator,
+      .token-log{
+        width:100%;
+        max-width:none;
+      }
+    }
+
+    @media (max-width: 640px){
+      .calculator-buttons{
+        gap:8px;
+      }
+      .calc-btn{
+        height:48px;
+        font-size:15px;
+      }
+      .result{
+        font-size:26px;
+      }
+      .log-time{
+        width:56px;
+      }
+      .log-tokens{
+        width:auto;
+      }
+      .log-entry{
+        align-items:flex-start;
+        flex-wrap:wrap;
+      }
+    }
+
+    @media (max-width: 480px){
+      .calc-wrap,
+      .calculator,
+      .token-log{
+        padding:12px;
+      }
+      .token-actions,
+      .log-actions{
+        justify-content:stretch;
+      }
+      .token-btn,
+      .log-actions button{
+        width:100%;
+        justify-content:center;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="page-title">
+        <div>
+          <div class="breadcrumb">
+            <a href="index.html">Главная</a>
+            <span>›</span>
+            <span>Калькулятор</span>
+          </div>
+          <h1 style="margin:6px 0px 0px; font-size:24px;">Калькулятор для подсчёта жетонов</h1>
+          <p style="margin:8px 0px 0px; color:#a9b7d0; font-size:13px;">
+            Вводи число на экране калькулятора и управляй жетонами снизу.
+          </p>
+        </div>
+
+        <a class="back-home" href="index.html">
+          <i class="fas fa-arrow-left"></i>
+          На главную
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <div class="calc-wrap">
+        <div class="layout">
+<div class="token-log">
+            <h2 style="margin:0px 0px 12px; font-size:18px;">
+              <i class="fas fa-history" style="color:#2f7dd1;"></i>
+              История операций
+            </h2>
+
+            <div class="log-container" id="tokenLog"></div>
+<div class="calculator">
+            <div class="calculator-screen">
+              <div class="calculation" id="calculation">0</div>
+              <div class="result" id="result">0</div>
+            </div>
+
+            <div class="calculator-buttons">
+              <button class="calc-btn operator" onclick="clearDisplay()">C</button>
+              <button class="calc-btn operator" onclick="deleteLast()"><i class="fas fa-backspace"></i></button>
+              <button class="calc-btn operator" onclick="appendToDisplay('%')">%</button>
+              <button class="calc-btn operator" onclick="appendToDisplay('/')">/</button>
+
+              <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
+              <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
+              <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
+              <button class="calc-btn operator" onclick="appendToDisplay('*')">×</button>
+
+              <button class="calc-btn" onclick="appendToDisplay('4')">4</button>
+              <button class="calc-btn" onclick="appendToDisplay('5')">5</button>
+              <button class="calc-btn" onclick="appendToDisplay('6')">6</button>
+              <button class="calc-btn operator" onclick="appendToDisplay('-')">−</button>
+
+              <button class="calc-btn" onclick="appendToDisplay('1')">1</button>
+              <button class="calc-btn" onclick="appendToDisplay('2')">2</button>
+              <button class="calc-btn" onclick="appendToDisplay('3')">3</button>
+              <button class="calc-btn operator" onclick="appendToDisplay('+')">+</button>
+
+              <button class="calc-btn zero" onclick="appendToDisplay('0')">0</button>
+              <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
+              <button class="calc-btn equals" onclick="calculateResult()">=</button>
+            </div>
+
+            <div class="token-panel">
+              <div class="token-top">
+                <div class="token-title">
+                  <span>Всего жетонов:</span>
+                  <div class="token-value" id="totalTokens">30</div>
+                </div>
+
+                <div style="font-size:34px; color:#2f7dd1;">
+                  <i class="fas fa-coins"></i>
+                </div>
+              </div>
+
+              
+              </div>
+
+              <div class="token-actions">
+                <button class="token-btn add" onclick="addTokens()">
+                  <i class="fas fa-plus-circle"></i>
+                  Добавить
+                </button>
+
+                <button class="token-btn sub" onclick="subtractTokens()">
+                  <i class="fas fa-minus-circle"></i>
+                  Убавить
+                </button>
+
+                <button class="token-btn reset" onclick="resetTokens()">
+                  <i class="fas fa-rotate-right"></i>
+                  Сброс
+                </button>
+              </div>
+
+              <div style="margin-top:12px; color:#a9b7d0; font-size:13px;">
+                Число берётся с экрана калькулятора. Можно вводить выражения (например 12+3). Жетоны и история сохраняются отдельно для каждого игрока на этом устройстве.
+              </div>
+            </div>
+          </div>
+
+          
+
+            <div class="log-actions">
+              <button onclick="clearLog()">
+                <i class="fas fa-trash"></i>
+                Очистить историю
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer>
+         <a class="back-home" href="index.html">
+          <i class="fas fa-arrow-left"></i>
+          На главную
+        </a>
+      </div>
+
+      <p class="copyright">© 2026 PythonAlgorithm.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    let displayValue = "0";
+    let totalTokens = 30;
+    let tokenHistory = [];
+    
+    window.addEventListener("DOMContentLoaded", function(){
+      const sel = document.getElementById("playerKey");
+      if (sel) {
+        const savedPlayer = localStorage.getItem("pythonAlgorithmCurrentPlayer");
+        if (savedPlayer) sel.value = savedPlayer;
+        currentPlayer = sel.value;
+      }
+      loadFromStorage();
+      updateDisplay();
+      updateTokenDisplay();
+      updateLogDisplay();
+
+      if (tokenHistory.length === 0) {
+        addToHistory("Начало работы", 0);
+      }
+    });
+
+    function updateDisplay(){
+      document.getElementById("calculation").textContent = displayValue;
+      document.getElementById("result").textContent = displayValue;
+    }
+
+    function clearDisplay(){
+      displayValue = "0";
+      updateDisplay();
+    }
+
+    function deleteLast(){
+      if (displayValue.length > 1) {
+        displayValue = displayValue.slice(0, -1);
+      } else {
+        displayValue = "0";
+      }
+      updateDisplay();
+    }
+
+    function appendToDisplay(value){
+      if (displayValue === "0" || displayValue === "Ошибка") {
+        displayValue = value;
+      } else {
+        displayValue += value;
+      }
+      updateDisplay();
+    }
+
+    function isValidExpression(expr){
+      if (expr === "") return false;
+      let balance = 0;
+      for (let char of expr) {
+        if (char === "(") balance++;
+        if (char === ")") balance--;
+        if (balance < 0) return false;
+      }
+      if (balance !== 0) return false;
+      return true;
+    }
+
+    function evaluateExpression(expr){
+      expr = expr.replace(/\s+/g, "");
+      if (!/^[\d+\-*/().%]+$/.test(expr)) {
+        throw new Error("Некорректные символы");
+      }
+      return new Function("return " + expr)();
+    }
+
+    function calculateResult(){
+      try{
+        let expr = displayValue.replace(/×/g, "*").replace(/−/g, "-");
+        if (!isValidExpression(expr)) throw new Error("Некорректное выражение");
+        let result = evaluateExpression(expr);
+        if (isNaN(result) || !isFinite(result)) throw new Error("Некорректный результат");
+        result = Math.round(result * 100) / 100;
+        displayValue = result.toString();
+        updateDisplay();
+      }catch(e){
+        displayValue = "Ошибка";
+        updateDisplay();
+        setTimeout(() => {
+          if (displayValue === "Ошибка") clearDisplay();
+        }, 1200);
+      }
+    }
+
+    function getAmountFromDisplay(){
+      try{
+        if (displayValue === "Ошибка") return NaN;
+        let expr = displayValue.replace(/×/g, "*").replace(/−/g, "-");
+        if (!isValidExpression(expr)) return NaN;
+        const result = evaluateExpression(expr);
+        return result;
+      }catch(e){
+        return NaN;
+      }
+    }
+
+    function updateTokenDisplay(){
+      document.getElementById("totalTokens").textContent = totalTokens;
+    }
+
+    function addToHistory(action, change){
+      const now = new Date();
+      const timeString = now.getHours().toString().padStart(2,"0") + ":" + now.getMinutes().toString().padStart(2,"0");
+
+      tokenHistory.push({
+        time: timeString,
+        action: action,
+        change: change,
+        total: totalTokens
+      });
+
+      if (tokenHistory.length > 20) tokenHistory = tokenHistory.slice(-20);
+
+      updateLogDisplay();
+      saveToStorage();
+    }
+
+    function updateLogDisplay(){
+      const logContainer = document.getElementById("tokenLog");
+      if (!logContainer) return;
+
+      logContainer.innerHTML = "";
+
+      const recent = [...tokenHistory].reverse().slice(0, 10);
+
+      if (recent.length === 0) {
+        logContainer.innerHTML = '<div class="log-entry"><span class="log-time">Сейчас</span><span class="log-action">Начало работы</span><span class="log-tokens">0</span></div>';
+        return;
+      }
+
+      recent.forEach(log => {
+        const row = document.createElement("div");
+        row.className = "log-entry";
+
+        const tokenClass = log.change > 0 ? "positive" : (log.change < 0 ? "negative" : "");
+
+        row.innerHTML = `
+          <span class="log-time">${log.time}</span>
+          <span class="log-action">${log.action}</span>
+          <span class="log-tokens ${tokenClass}">${log.change > 0 ? "+" : ""}${log.change} (${log.total})</span>
+        `;
+        logContainer.appendChild(row);
+      });
+    }
+
+        
+function saveToStorage(){
+      try{
+        localStorage.setItem("pythonAlgorithmTokens_v1", totalTokens.toString());
+        localStorage.setItem("pythonAlgorithmHistory_v1", JSON.stringify(tokenHistory));
+      }catch(e){}
+    }
+
+    function loadFromStorage(){
+      try{
+        const savedTokens = localStorage.getItem("pythonAlgorithmTokens_v1");
+        const savedHistory = localStorage.getItem("pythonAlgorithmHistory_v1");
+
+        if (savedTokens) {
+          const n = parseInt(savedTokens);
+          totalTokens = isNaN(n) ? 30 : n;
+        }
+
+        if (savedHistory) {
+          tokenHistory = JSON.parse(savedHistory) || [];
+        }
+      }catch(e){
+        totalTokens = 30;
+        tokenHistory = [];
+      }
+    }
+
+    function addTokens(){
+      const amountRaw = getAmountFromDisplay();
+      const numAmount = Math.floor(amountRaw);
+
+      if (!isNaN(numAmount) && numAmount > 0 && numAmount <= 1000) {
+        totalTokens += numAmount;
+        updateTokenDisplay();
+        addToHistory("Добавлено " + numAmount + " жетонов", numAmount);
+        clearDisplay();
+      } else {
+        alert("⚠️ Введите на калькуляторе число от 1 до 1000 и нажмите 'Добавить'.");
+      }
+    }
+
+    function subtractTokens(){
+      const amountRaw = getAmountFromDisplay();
+      const numAmount = Math.floor(amountRaw);
+
+      if (!isNaN(numAmount) && numAmount > 0 && numAmount <= 1000) {
+        if (numAmount > totalTokens) {
+          alert("❌ Недостаточно жетонов!\nДоступно: " + totalTokens);
+          return;
+        }
+
+        totalTokens -= numAmount;
+        updateTokenDisplay();
+        addToHistory("Вычтено " + numAmount + " жетонов", -numAmount);
+        clearDisplay();
+      } else {
+        alert("⚠️ Введите на калькуляторе число от 1 до 1000 и нажмите 'Убавить'.");
+      }
+    }
+
+    function resetTokens(){
+      const ok = confirm("Сбросить жетоны к 30 для выбранного игрока?");
+      if (!ok) return;
+
+      const oldTotal = totalTokens;
+      totalTokens = 30;
+      updateTokenDisplay();
+      addToHistory("Сброс жетонов", -(oldTotal - 30));
+    }
+
+    function clearLog(){
+      const ok = confirm("Очистить историю операций?");
+      if (!ok) return;
+      tokenHistory = [];
+      updateLogDisplay();
+      saveToStorage();
+    }
+
+    document.addEventListener("keydown", function(event){
+      if (event.key >= "0" && event.key <= "9") {
+        appendToDisplay(event.key);
+      } else if (["+", "-", "*", "/", "%", "."].includes(event.key)) {
+        appendToDisplay(event.key === "*" ? "×" : event.key);
+      } else if (event.key === "Enter" || event.key === "=") {
+        calculateResult();
+      } else if (event.key === "Escape") {
+        clearDisplay();
+      } else if (event.key === "Backspace") {
+        deleteLast();
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
