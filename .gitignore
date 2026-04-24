@@ -1,121 +1,50 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        select, button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #result {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e7f3ff;
-            border-left: 6px solid #2196F3;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .error {
-            background-color: #ffebee;
-            border-left: 6px solid #f44336;
-            color: #d32f2f;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Simple Calculator</h1>
-        <input type="number" id="num1" placeholder="Enter first number">
-        <select id="operator">
-            <option value="+">Addition (+)</option>
-            <option value="-">Subtraction (-)</option>
-            <option value="*">Multiplication (*)</option>
-            <option value="/">Division (/)</option>
-            <option value="%">Modulus (%)</option>
-        </select>
-        <input type="number" id="num2" placeholder="Enter second number">
-        <button onclick="calculate()">Calculate</button>
-        <div id="result"></div>
-    </div>
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
 
-    <script>
-        function calculate() {
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const num2 = parseFloat(document.getElementById('num2').value);
-            const operator = document.getElementById('operator').value;
-            const resultDiv = document.getElementById('result');
-            
-            if (isNaN(num1) || isNaN(num2)) {
-                resultDiv.textContent = "Error: Please enter valid numbers";
-                resultDiv.className = "error";
-                return;
-            }
+# Dependencies
+.venv/
+venv/
+node_modules/
+dist/
+build/
+target/
+.gradle/
 
-            let result;
-            switch(operator) {
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    if (num2 === 0) {
-                        resultDiv.textContent = "Error: Division by zero is not allowed";
-                        resultDiv.className = "error";
-                        return;
-                    }
-                    result = num1 / num2;
-                    break;
-                case '%':
-                    result = num1 % num2;
-                    break;
-                default:
-                    resultDiv.textContent = "Error: Invalid operator";
-                    resultDiv.className = "error";
-                    return;
-            }
-            
-            resultDiv.textContent = `Result: ${result}`;
-            resultDiv.className = "";
-        }
-    </script>
-</body>
-</html>
-```
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Cache
+.mypy_cache/
+.pytest_cache/
